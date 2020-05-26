@@ -1,6 +1,6 @@
 package com.miguel.ags.mvvmtodos.base
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.miguel.ags.mvvmtodos.injection.component.DaggerViewModelInjector
 import com.miguel.ags.mvvmtodos.injection.component.ViewModelInjector
 import com.miguel.ags.mvvmtodos.injection.module.NetworkModule

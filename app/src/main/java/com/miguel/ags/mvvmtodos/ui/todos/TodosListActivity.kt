@@ -1,13 +1,13 @@
 package com.miguel.ags.mvvmtodos.ui.todos
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.annotation.StringRes
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.databinding.ActivityTodosListBinding
 import com.miguel.ags.mvvmtodos.injection.ViewModelFactory
@@ -21,7 +21,12 @@ class TodosListActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_todos_list)
-        binding.todosList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.todosList.layoutManager =
+            LinearLayoutManager(
+                this,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
 
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(TodosListViewModel::class.java)
         viewModel.errorMessage.observe(this, Observer {

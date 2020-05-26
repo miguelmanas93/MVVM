@@ -1,31 +1,49 @@
 package com.miguel.ags.mvvmtodos.ui
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.miguel.ags.mvvmtodos.R
+import com.miguel.ags.mvvmtodos.model.UsuarioDatos
+import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
+import com.miguel.ags.mvvmtodos.model.database.AppDatabase
 import com.miguel.ags.mvvmtodos.network.RetrofitInstance
+import com.miguel.ags.mvvmtodos.ui.todos.LoginViewModel
 import retrofit2.Call
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+  //  private lateinit var binding: ActivityMainBinding
+    private lateinit var usuarioViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+
+        val dao = AppDatabase.getInstance(application).usuarioDao
+
+        val datos = UsuarioDatos(dao)
+        val factory = UsuarioViewModelFactory(datos)
+
+//        usuarioViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
+//        binding.myViewModel = usuarioViewModel
+//        binding.lifecycleOwner = this
+//        binding.lifecycleOwner = this
 
 
         val fab: FloatingActionButton = findViewById(R.id.fab)

@@ -2,21 +2,21 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "83e1ee960b9bb8d4c81c6d3774c9afea",
+    "identityHash": "8767a09604848b2c99b0fc4ea4852115",
     "entities": [
       {
         "tableName": "Todos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `id` INTEGER NOT NULL, `title` TEXT NOT NULL, `completed` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_user` INTEGER NOT NULL, `id_entrada` INTEGER NOT NULL, `title` TEXT NOT NULL, `status` INTEGER NOT NULL, PRIMARY KEY(`id_entrada`))",
         "fields": [
           {
             "fieldPath": "userId",
-            "columnName": "userId",
+            "columnName": "id_user",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "id",
-            "columnName": "id",
+            "columnName": "id_entrada",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -28,14 +28,14 @@
           },
           {
             "fieldPath": "completed",
-            "columnName": "completed",
+            "columnName": "status",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "id_entrada"
           ],
           "autoGenerate": false
         },
@@ -44,34 +44,53 @@
       },
       {
         "tableName": "usuario",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`email` TEXT NOT NULL, `password` TEXT NOT NULL, PRIMARY KEY(`email`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_usuario` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nombre_usuario` TEXT NOT NULL, `email_usuario` TEXT NOT NULL, `pass_usuario` TEXT NOT NULL, `token_usuario` TEXT NOT NULL)",
         "fields": [
           {
+            "fieldPath": "id",
+            "columnName": "id_usuario",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "nombre_usuario",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "email",
-            "columnName": "email",
+            "columnName": "email_usuario",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "password",
-            "columnName": "password",
+            "columnName": "pass_usuario",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "token",
+            "columnName": "token_usuario",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "email"
+            "id_usuario"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"83e1ee960b9bb8d4c81c6d3774c9afea\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8767a09604848b2c99b0fc4ea4852115')"
     ]
   }
 }

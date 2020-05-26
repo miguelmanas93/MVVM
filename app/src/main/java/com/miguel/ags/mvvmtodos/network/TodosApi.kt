@@ -34,7 +34,7 @@ interface TodosApi {
     @POST("post")
     fun iniciarSesion(
         @Body info: Usuario
-    ): retrofit2.Call<UsuarioRes>
+    ): retrofit2.Call<Usuario>
 }
 
 class RetrofitInstance {

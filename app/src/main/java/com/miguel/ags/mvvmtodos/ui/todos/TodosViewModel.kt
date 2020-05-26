@@ -1,6 +1,6 @@
 package com.miguel.ags.mvvmtodos.ui.todos
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.miguel.ags.mvvmtodos.base.BaseViewModel
 import com.miguel.ags.mvvmtodos.model.Todos
 

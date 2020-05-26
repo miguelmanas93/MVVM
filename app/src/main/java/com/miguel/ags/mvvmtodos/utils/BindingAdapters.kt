@@ -1,10 +1,10 @@
 package com.miguel.ags.mvvmtodos.utils
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.databinding.BindingAdapter
-import android.support.v7.widget.RecyclerView
-import android.support.v7.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import com.miguel.ags.mvvmtodos.utils.extension.getParentActivity
