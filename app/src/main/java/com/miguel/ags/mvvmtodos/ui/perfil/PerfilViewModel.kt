@@ -51,9 +51,9 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
 
     fun guardarOActualizar() {
         if (nameUsuario.value == null) {
-             mensajeEstado.value = Avisos("Añada el nombre del usuario")
+            mensajeEstado.value = Avisos("Añada el nombre del usuario")
         } else if (emaiUsuario.value == null) {
-             mensajeEstado.value = Avisos("Agregue el email del usuario")
+            mensajeEstado.value = Avisos("Agregue el email del usuario")
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emaiUsuario.value!!).matches()) {
             mensajeEstado.value = Avisos("Introduzca el mail de forma correcta")
         } else {
@@ -78,8 +78,9 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
     }
 
     //El viewModelScope.launch se establece cuando en la misma vista se van a realizar operaciones estando este view activo
-
+    //En el caso de insertar varios se irá incrementando el id, como solo va a ser un usuario,
     fun insertar(usuario: Usuario) = viewModelScope.launch {
+
         val nuevoIdFila = userDat.insertar(usuario)
         if (nuevoIdFila > -1) {
             mensajeEstado.value = Avisos("Usuario insertado correctamente $nuevoIdFila")
@@ -87,6 +88,8 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
         } else {
             mensajeEstado.value = Avisos("Error al insertar usuario")
         }
+
+
     }
 
     fun actualizar(usuario: Usuario) = viewModelScope.launch {
@@ -108,11 +111,11 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
 
 
     fun iniciarActualizaroBorrar(usuario: Usuario) = viewModelScope.launch {
+        idUsuario.value = usuario.id.toString()
         nameUsuario.value = usuario.name
         emaiUsuario.value = usuario.email
         passUsuario.value = usuario.password
         tokenUsuario.value = usuario.token
-        idUsuario.value = usuario.id.toString()
 
         actualizadoOBorrado = true
         usuarioActualizadoOBorrado = usuario

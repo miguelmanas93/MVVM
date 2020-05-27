@@ -1,12 +1,10 @@
 package com.miguel.ags.mvvmtodos.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,35 +15,34 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.miguel.ags.mvvmtodos.R
+import com.miguel.ags.mvvmtodos.databinding.ActivityMainBinding
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
 import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
 import com.miguel.ags.mvvmtodos.model.database.AppDatabase
-import com.miguel.ags.mvvmtodos.ui.perfil.PerfilActivity
 import com.miguel.ags.mvvmtodos.ui.perfil.PerfilViewModel
 
+class MainActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var perfilViewModel: PerfilViewModel
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-  //  private lateinit var binding: ActivityMainBinding
-    private lateinit var usuarioViewModel: PerfilViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-
+        //Se crea la instancia de la base de datos
         val dao = AppDatabase.getInstance(application).usuarioDao
+        //metodos de la bd
+        val repository = UsuarioDatos(dao)
+        val factory =
+            UsuarioViewModelFactory(
+                repository
+            )
 
-        val datos = UsuarioDatos(dao)
-        val factory = UsuarioViewModelFactory(datos)
-
-//        usuarioViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
-//        binding.myViewModel = usuarioViewModel
-//        binding.lifecycleOwner = this
-//        binding.lifecycleOwner = this
 
 
 
@@ -86,18 +83,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
-            R.id.nav_perfil -> {
-                Toast.makeText(this, "No funciona", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, PerfilActivity::class.java)
-
-                this.startActivity(i)
-            }
-        }
-        //close navigation drawer
-        //close navigation drawer
-             return true
-    }
 }

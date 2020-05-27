@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.databinding.ActivityPerfilBinding
-import com.miguel.ags.mvvmtodos.model.Usuario
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
 import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
 import com.miguel.ags.mvvmtodos.model.database.AppDatabase
@@ -43,17 +42,6 @@ class PerfilActivity : AppCompatActivity() {
         })
 
     }
-
-    private fun listItemClicked(usuario: Usuario) {
-        //Toast.makeText(this,"selected name is ${subscriber.name}",Toast.LENGTH_LONG).show()
-        perfilViewModel.iniciarActualizaroBorrar(usuario)
-    }
-
-    private fun initDatos() {
-
-        displayUsuario()
-    }
-
 
     private fun displayUsuario() {
         perfilViewModel.usuario.observe(this, Observer {

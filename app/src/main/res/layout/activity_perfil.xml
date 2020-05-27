@@ -17,8 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="TextView"
+            android:text="Estos son sus datos \n Si desesa hacer alguna modificación, pueden ser modificados"
             android:textAlignment="center"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
-                android:hint="id como usuario" />
+                android:text="@={datosUsuario.idUsuario}"
+                android:hint="Id de Usuario" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
