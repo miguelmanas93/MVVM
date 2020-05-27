@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="datosUsuario"
             type="com.miguel.ags.mvvmtodos.ui.perfil.PerfilViewModel" />

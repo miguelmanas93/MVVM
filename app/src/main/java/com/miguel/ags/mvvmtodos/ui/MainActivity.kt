@@ -16,15 +16,10 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.databinding.ActivityMainBinding
-import com.miguel.ags.mvvmtodos.model.UsuarioDatos
-import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
-import com.miguel.ags.mvvmtodos.model.database.AppDatabase
-import com.miguel.ags.mvvmtodos.ui.perfil.PerfilViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var perfilViewModel: PerfilViewModel
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -33,19 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        //Se crea la instancia de la base de datos
-        val dao = AppDatabase.getInstance(application).usuarioDao
-        //metodos de la bd
-        val repository = UsuarioDatos(dao)
-        val factory =
-            UsuarioViewModelFactory(
-                repository
-            )
-
-
-
-
 
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
@@ -82,5 +64,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+
 
 }

@@ -20,6 +20,8 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
     //Creamos una variable para actualizar o eliminar
     private var actualizadoOBorrado = false
 
+    var insertado = false
+
     private lateinit var usuarioActualizadoOBorrado: Usuario
 
     @Bindable
@@ -61,8 +63,7 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
                 usuarioActualizadoOBorrado.name = nameUsuario.value!!
                 usuarioActualizadoOBorrado.email = emaiUsuario.value!!
                 usuarioActualizadoOBorrado.password = passUsuario.value!!
-                usuarioActualizadoOBorrado.token = tokenUsuario.value!!
-                actualizar(usuarioActualizadoOBorrado)
+                 actualizar(usuarioActualizadoOBorrado)
             } else {
                 val nombre = nameUsuario.value!!
                 val email = emaiUsuario.value!!
@@ -73,6 +74,7 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
                 emaiUsuario.value = null
                 passUsuario.value = null
                 tokenUsuario.value = null
+
             }
         }
     }
@@ -80,11 +82,10 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
     //El viewModelScope.launch se establece cuando en la misma vista se van a realizar operaciones estando este view activo
     //En el caso de insertar varios se irá incrementando el id, como solo va a ser un usuario,
     fun insertar(usuario: Usuario) = viewModelScope.launch {
-
-        val nuevoIdFila = userDat.insertar(usuario)
-        if (nuevoIdFila > -1) {
-            mensajeEstado.value = Avisos("Usuario insertado correctamente $nuevoIdFila")
-            iniciarActualizaroBorrar(usuario)
+        if (insertado == false) {
+            userDat.insertar(usuario)
+            mensajeEstado.value = Avisos("Usuario insertado correctamente")
+            insertado = true
         } else {
             mensajeEstado.value = Avisos("Error al insertar usuario")
         }
@@ -93,35 +94,27 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
     }
 
     fun actualizar(usuario: Usuario) = viewModelScope.launch {
-        val numDeFila = userDat.actualizar(usuario)
-        if (numDeFila > 0) {
-            nameUsuario.value = null
-            emaiUsuario.value = null
-            passUsuario.value = null
-            tokenUsuario.value = null
+        if (insertado == true){
+            nameUsuario.value = usuario.name
+            emaiUsuario.value = usuario.email
+            passUsuario.value = usuario.password
 
-            actualizadoOBorrado = false
-            guardarOActualizarBtn.value = "Guardar"
-            mensajeEstado.value = Avisos("$numDeFila actualizado")
-            //Mensaje de Borrado
+            actualizadoOBorrado = true
+            userDat.actualizar(usuario)
+            guardarOActualizarBtn.value = "Actualizar"
+            mensajeEstado.value = Avisos(" Actualizado correctamente")
         } else {
             mensajeEstado.value = Avisos("Error")
         }
     }
 
-
     fun iniciarActualizaroBorrar(usuario: Usuario) = viewModelScope.launch {
-        idUsuario.value = usuario.id.toString()
         nameUsuario.value = usuario.name
         emaiUsuario.value = usuario.email
-        passUsuario.value = usuario.password
-        tokenUsuario.value = usuario.token
-
         actualizadoOBorrado = true
         usuarioActualizadoOBorrado = usuario
         guardarOActualizarBtn.value = "Actualizar"
     }
-
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
     }

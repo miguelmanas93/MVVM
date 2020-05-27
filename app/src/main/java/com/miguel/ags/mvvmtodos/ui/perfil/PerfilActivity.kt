@@ -21,6 +21,10 @@ class PerfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_perfil)
 
+        cargarDatos()
+    }
+
+    fun cargarDatos() {
         //Se crea la instancia de la base de datos
         val dao = AppDatabase.getInstance(application).usuarioDao
         //metodos de la bd
@@ -40,7 +44,6 @@ class PerfilActivity : AppCompatActivity() {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
         })
-
     }
 
     private fun displayUsuario() {
@@ -51,6 +54,9 @@ class PerfilActivity : AppCompatActivity() {
                 perfilViewModel.passUsuario.value = it.get(0).password
                 perfilViewModel.emaiUsuario.value = it.get(0).email
                 perfilViewModel.idUsuario.value = it.get(0).id.toString()
+                perfilViewModel.iniciarActualizaroBorrar(it[0])
+                perfilViewModel.insertado = true
+
             }
             //  adapter.setList(it)
             // adapter.notifyDataSetChanged()
