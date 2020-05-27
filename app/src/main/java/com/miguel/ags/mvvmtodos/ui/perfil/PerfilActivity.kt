@@ -56,10 +56,7 @@ class PerfilActivity : AppCompatActivity() {
                 perfilViewModel.idUsuario.value = it.get(0).id.toString()
                 perfilViewModel.iniciarActualizaroBorrar(it[0])
                 perfilViewModel.insertado = true
-
             }
-            //  adapter.setList(it)
-            // adapter.notifyDataSetChanged()
         })
     }
 

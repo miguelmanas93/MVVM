@@ -31,7 +31,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         //Cambiamos el nombre a la barra superior
         val actionBar = supportActionBar
         actionBar!!.title = "AGS - Login test"
@@ -59,7 +58,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun comprobar(email: String, contrasenia: String) {
+    private fun comprobar(email: String, contrasenia: String) {
         if (validarFormulario(email, contrasenia)) {
             val sharedPreferences = getSharedPreferences("TOKEN_INFO", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
@@ -67,7 +66,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun validarFormulario(email: String, contrasenia: String): Boolean {
+    private fun validarFormulario(email: String, contrasenia: String): Boolean {
         var isValid = true
         if (!email.esValido()) {
             Toast.makeText(this, "Error en el mail", Toast.LENGTH_LONG).show()
@@ -119,17 +118,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
-                    //    overridePendingTransition(
-                    //      R.anim.slide_in_right,
-                    //     R.anim.slide_out_left
-                    //)
                     finish()
 
                 } else if (response.code() == 500) {
                     Toast.makeText(
                         this@LoginActivity,
                         "The given email or password is wrong!",
-
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {

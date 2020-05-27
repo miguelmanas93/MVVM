@@ -1,5 +1,7 @@
 package com.miguel.ags.mvvmtodos.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -18,7 +20,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.databinding.ActivityMainBinding
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
@@ -42,9 +43,8 @@ class MainActivity : AppCompatActivity() {
 
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            enviarMail()
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -92,7 +92,6 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         displayUsuario()
 
-
         perfilViewModel.mensaje.observe(this, Observer {
             it.getContentSiNoManipulado()?.let {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
@@ -112,10 +111,17 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.tvNombrePersona).text = "Complete sus datos en Editar Perfil"
                 findViewById<TextView>(R.id.tvEmailPersona).text = "email desconocido"
             }
-            //  adapter.setList(it)
-            // adapter.notifyDataSetChanged()
         })
     }
 
-
+    fun enviarMail(){
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:") // only email apps should handle this
+            putExtra(Intent.EXTRA_EMAIL, "test@gmail.com")
+            putExtra(Intent.EXTRA_SUBJECT, "subtitulo")
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+    }
 }

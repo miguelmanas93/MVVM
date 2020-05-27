@@ -94,8 +94,6 @@ open class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Obs
             mensajeEstado.value =
                 Avisos("Error al insertar usuario")
         }
-
-
     }
 
     fun actualizar(usuario: Usuario) = viewModelScope.launch {
