@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_slideshow" />
     <activity
         android:id="@+id/nav_perfil"
-        android:name="com.miguel.ags.mvvmtodos.ui.perfil.Perfil"
+        android:name="com.miguel.ags.mvvmtodos.ui.perfil.PerfilActivity"
         android:label="Perfil" />
 
 </navigation>

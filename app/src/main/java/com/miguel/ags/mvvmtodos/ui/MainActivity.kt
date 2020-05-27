@@ -20,15 +20,15 @@ import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
 import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
 import com.miguel.ags.mvvmtodos.model.database.AppDatabase
-import com.miguel.ags.mvvmtodos.ui.perfil.PefilViewModel
-import com.miguel.ags.mvvmtodos.ui.perfil.Perfil
+import com.miguel.ags.mvvmtodos.ui.perfil.PerfilActivity
+import com.miguel.ags.mvvmtodos.ui.perfil.PerfilViewModel
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
   //  private lateinit var binding: ActivityMainBinding
-    private lateinit var usuarioViewModel: PefilViewModel
+    private lateinit var usuarioViewModel: PerfilViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (menuItem.itemId) {
             R.id.nav_perfil -> {
                 Toast.makeText(this, "No funciona", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, Perfil::class.java)
+                val i = Intent(this, PerfilActivity::class.java)
 
                 this.startActivity(i)
             }

@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_logo_ags_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.perfil.Perfil">
+        <activity android:name=".ui.perfil.PerfilActivity">
 
         </activity>
         <activity android:name=".ui.login.LoginActivity">

@@ -1,10 +1,9 @@
 package com.miguel.ags.mvvmtodos.ui.todos
 
-import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.databinding.ItemTodosBinding
 import com.miguel.ags.mvvmtodos.model.Todos
@@ -34,7 +33,7 @@ class TodosListAdapter: RecyclerView.Adapter<TodosListAdapter.ViewHolder>() {
     class ViewHolder(private val binding: ItemTodosBinding): RecyclerView.ViewHolder(binding.root){
         private val viewModel = TodosViewModel()
 
-        fun bind(todos:Todos){
+        fun bind(todos: Todos){
             viewModel.bind(todos)
             binding.viewModel = viewModel
            }

@@ -17,7 +17,6 @@ interface UsuarioDao {
 
     @Query("SELECT * FROM usuario")
     fun getDatosUsuario() : LiveData<List<Usuario>>
-    //val all: List<Usuario>
 
 
 

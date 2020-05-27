@@ -6,7 +6,7 @@
 
         <variable
             name="myViewModel"
-            type="com.miguel.ags.mvvmtodos.ui.perfil.PefilViewModel" />
+            type="com.miguel.ags.mvvmtodos.ui.perfil.PerfilViewModel" />
     </data>
 
     <LinearLayout
