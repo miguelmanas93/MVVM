@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.miguel.ags.mvvmtodos.model.Usuario
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
-import com.miguel.ags.mvvmtodos.ui.Avisos
+import com.miguel.ags.mvvmtodos.utils.Avisos
 import kotlinx.coroutines.launch
 
-class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observable {
+open class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observable {
 
     //Cargamos los usuarios
     val usuario = userDat.usuarioDatos
@@ -53,17 +53,20 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
 
     fun guardarOActualizar() {
         if (nameUsuario.value == null) {
-            mensajeEstado.value = Avisos("Añada el nombre del usuario")
+            mensajeEstado.value =
+                Avisos("Añada el nombre del usuario")
         } else if (emaiUsuario.value == null) {
-            mensajeEstado.value = Avisos("Agregue el email del usuario")
+            mensajeEstado.value =
+                Avisos("Agregue el email del usuario")
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emaiUsuario.value!!).matches()) {
-            mensajeEstado.value = Avisos("Introduzca el mail de forma correcta")
+            mensajeEstado.value =
+                Avisos("Introduzca el mail de forma correcta")
         } else {
             if (actualizadoOBorrado) {
                 usuarioActualizadoOBorrado.name = nameUsuario.value!!
                 usuarioActualizadoOBorrado.email = emaiUsuario.value!!
                 usuarioActualizadoOBorrado.password = passUsuario.value!!
-                 actualizar(usuarioActualizadoOBorrado)
+                actualizar(usuarioActualizadoOBorrado)
             } else {
                 val nombre = nameUsuario.value!!
                 val email = emaiUsuario.value!!
@@ -84,17 +87,19 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
     fun insertar(usuario: Usuario) = viewModelScope.launch {
         if (insertado == false) {
             userDat.insertar(usuario)
-            mensajeEstado.value = Avisos("Usuario insertado correctamente")
+            mensajeEstado.value =
+                Avisos("Usuario insertado correctamente")
             insertado = true
         } else {
-            mensajeEstado.value = Avisos("Error al insertar usuario")
+            mensajeEstado.value =
+                Avisos("Error al insertar usuario")
         }
 
 
     }
 
     fun actualizar(usuario: Usuario) = viewModelScope.launch {
-        if (insertado == true){
+        if (insertado == true) {
             nameUsuario.value = usuario.name
             emaiUsuario.value = usuario.email
             passUsuario.value = usuario.password
@@ -102,7 +107,8 @@ class PerfilViewModel(private val userDat: UsuarioDatos) : ViewModel(), Observab
             actualizadoOBorrado = true
             userDat.actualizar(usuario)
             guardarOActualizarBtn.value = "Actualizar"
-            mensajeEstado.value = Avisos(" Actualizado correctamente")
+            mensajeEstado.value =
+                Avisos(" Actualizado correctamente")
         } else {
             mensajeEstado.value = Avisos("Error")
         }

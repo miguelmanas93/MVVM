@@ -1,4 +1,4 @@
-package com.miguel.ags.mvvmtodos.ui
+package com.miguel.ags.mvvmtodos.utils
 
 open class Avisos<out T>(private val content: T) {
 

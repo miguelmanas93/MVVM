@@ -3,9 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<data><variable
-    name="datosUsuario"
-    type="com.miguel.ags.mvvmtodos.ui.perfil.PerfilViewModel"/></data>
+
+
 <androidx.drawerlayout.widget.DrawerLayout
 
     android:id="@+id/drawer_layout"
