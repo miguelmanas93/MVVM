@@ -1,32 +1,34 @@
 package com.miguel.ags.mvvmtodos.ui
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import androidx.lifecycle.ViewModelProvider
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
 import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
 import com.miguel.ags.mvvmtodos.model.database.AppDatabase
-import com.miguel.ags.mvvmtodos.network.RetrofitInstance
-import com.miguel.ags.mvvmtodos.ui.todos.LoginViewModel
-import retrofit2.Call
+import com.miguel.ags.mvvmtodos.ui.perfil.Perfil
+import com.miguel.ags.mvvmtodos.ui.todos.PefilViewModel
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
   //  private lateinit var binding: ActivityMainBinding
-    private lateinit var usuarioViewModel: LoginViewModel
+    private lateinit var usuarioViewModel: PefilViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 //        binding.lifecycleOwner = this
 
 
+
+
+
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -56,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
 
 
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home,
                 R.id.nav_gallery,
                 R.id.nav_slideshow,
-                R.id.nav_todos
+                R.id.nav_perfil
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -80,5 +84,20 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.nav_perfil -> {
+                Toast.makeText(this, "No funciona", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Perfil::class.java)
+
+                this.startActivity(i)
+            }
+        }
+        //close navigation drawer
+        //close navigation drawer
+             return true
     }
 }

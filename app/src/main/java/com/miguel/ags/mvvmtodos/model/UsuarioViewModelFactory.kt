@@ -2,14 +2,13 @@ package com.miguel.ags.mvvmtodos.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.miguel.ags.mvvmtodos.ui.todos.LoginViewModel
-import java.lang.IllegalArgumentException
+import com.miguel.ags.mvvmtodos.ui.todos.PefilViewModel
 
 class UsuarioViewModelFactory(private val repository: UsuarioDatos): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(LoginViewModel::class.java)){
-            return LoginViewModel(
+        if(modelClass.isAssignableFrom(PefilViewModel::class.java)){
+            return PefilViewModel(
                 repository
             ) as T
         }

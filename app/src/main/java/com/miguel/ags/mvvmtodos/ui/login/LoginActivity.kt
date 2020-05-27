@@ -4,15 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.model.Usuario
-import com.miguel.ags.mvvmtodos.network.RetrofitInstance
+import com.miguel.ags.mvvmtodos.model.database.RetrofitInstance
 import com.miguel.ags.mvvmtodos.network.TodosApi
 import com.miguel.ags.mvvmtodos.ui.MainActivity
 import retrofit2.Call

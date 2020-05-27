@@ -17,6 +17,8 @@ data class Usuario(
     @ColumnInfo(name = "pass_usuario")
     val password: String,
     @ColumnInfo(name = "token_usuario")
-    val token: String)
+    val token: String
+
+)
 
 

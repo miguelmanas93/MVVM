@@ -1,7 +1,7 @@
-package com.miguel.ags.mvvmtodos.ui.home
+package com.miguel.ags.mvvmtodos.ui.perfil
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.miguel.ags.mvvmtodos.R
 
 class Perfil : AppCompatActivity() {

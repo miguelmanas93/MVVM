@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="80dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:text="Activity con un GET"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
