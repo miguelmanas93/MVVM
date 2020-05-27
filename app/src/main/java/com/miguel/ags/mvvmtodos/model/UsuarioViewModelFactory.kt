@@ -2,7 +2,7 @@ package com.miguel.ags.mvvmtodos.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.miguel.ags.mvvmtodos.ui.todos.PefilViewModel
+import com.miguel.ags.mvvmtodos.ui.perfil.PefilViewModel
 
 class UsuarioViewModelFactory(private val repository: UsuarioDatos): ViewModelProvider.Factory {
 

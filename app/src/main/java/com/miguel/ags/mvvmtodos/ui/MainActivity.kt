@@ -20,8 +20,8 @@ import com.miguel.ags.mvvmtodos.R
 import com.miguel.ags.mvvmtodos.model.UsuarioDatos
 import com.miguel.ags.mvvmtodos.model.UsuarioViewModelFactory
 import com.miguel.ags.mvvmtodos.model.database.AppDatabase
+import com.miguel.ags.mvvmtodos.ui.perfil.PefilViewModel
 import com.miguel.ags.mvvmtodos.ui.perfil.Perfil
-import com.miguel.ags.mvvmtodos.ui.todos.PefilViewModel
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
